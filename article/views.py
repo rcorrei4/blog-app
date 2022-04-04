@@ -23,7 +23,15 @@ class ArticleUpdate(UpdateView):
 	model = Article
 	form_class = ArticleForm
 
+	def get_queryset(self):
+		user = self.request.user
+		return Article.objects.filter(author=user)
+
 @method_decorator(login_required, name='dispatch')
 class ArticleDelete(DeleteView):
 	model = Article
 	context_object_name = 'article'
+
+	def get_queryset(self):
+		user = self.request.user
+		return Article.objects.filter(author=user)
