@@ -18,6 +18,10 @@ class ArticleCreate(CreateView):
 	model = Article
 	form_class = ArticleForm
 
+	def form_valid(self, form):
+		form.instance.author_id = self.request.user.pk
+		return super().form_valid(form)
+
 @method_decorator(login_required, name='dispatch')
 class ArticleUpdate(UpdateView):
 	model = Article
