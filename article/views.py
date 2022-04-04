@@ -1,9 +1,11 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from .models import Article
+from .forms import ArticleForm
 
 class ArticleList(ListView):
 	model = Article
@@ -11,15 +13,17 @@ class ArticleList(ListView):
 class ArticleDetail(DetailView):
 	model = Article
 
-class ArticleCreate(LoginRequiredMixin, CreateView):
-
+@method_decorator(login_required, name='dispatch')
+class ArticleCreate(CreateView):
 	model = Article
-	fields = '__all__'
+	form_class = ArticleForm
 
-class ArticleUpdate(LoginRequiredMixin, UpdateView):
+@method_decorator(login_required, name='dispatch')
+class ArticleUpdate(UpdateView):
 	model = Article
-	fields = ['title', 'text']
+	form_class = ArticleForm
 
-class ArticleDelete(LoginRequiredMixin, DeleteView):
+@method_decorator(login_required, name='dispatch')
+class ArticleDelete(DeleteView):
 	model = Article
 	context_object_name = 'article'
