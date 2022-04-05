@@ -35,6 +35,7 @@ class ArticleUpdate(UpdateView):
 class ArticleDelete(DeleteView):
 	model = Article
 	context_object_name = 'article'
+	success_url = '/'
 
 	def get_queryset(self):
 		user = self.request.user
