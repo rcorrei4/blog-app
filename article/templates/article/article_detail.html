@@ -6,8 +6,13 @@
 	<title>Article</title>
 </head>
 <body>
-	{{ article }}
-	{{ article.text }}
-	{{ article.author }}
+	<h1>{{ article.title }}</h1>
+	<p>{{ article.text }}</p>
+	Author: {{ article.author }}
+
+	{% if request.user == article.author %}
+		<a href="{% url 'edit_article' article.slug %}">Edit</a>
+		<a href="{% url 'delete_article' article.slug %}">Delete</a>
+	{% endif %}
 </body>
 </html>
