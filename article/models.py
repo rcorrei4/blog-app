@@ -5,7 +5,7 @@ from autoslug import AutoSlugField
 
 class Article(models.Model):
 	title = models.CharField(max_length=128)
-	text = models.CharField(max_length=528)
+	body = models.TextField()
 	date = models.DateField(auto_now=True)
 	slug = AutoSlugField(populate_from='title', unique_with='title', null=False)
 
