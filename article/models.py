@@ -8,6 +8,8 @@ class Article(models.Model):
 	body = models.TextField()
 	date = models.DateField(auto_now=True)
 	slug = AutoSlugField(populate_from='title', unique_with='title', null=False)
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
 
 	author = models.ForeignKey(User, on_delete=models.PROTECT)
 
