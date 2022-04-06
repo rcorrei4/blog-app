@@ -10,8 +10,9 @@ class Article(models.Model):
 	slug = AutoSlugField(populate_from='title', unique_with='title', null=False)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
+	likes = models.ManyToManyField(User, related_name='likes')
 
-	author = models.ForeignKey(User, on_delete=models.PROTECT)
+	author = models.ForeignKey(User, on_delete=models.PROTECT, related_name='article_author')
 
 	def __str__(self):
 		return self.title
