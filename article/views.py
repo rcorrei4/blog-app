@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.models import User
-from .models import Article
+from .models import Article, Tag
 from .forms import ArticleForm
 
 class ArticleList(ListView):
@@ -23,6 +23,11 @@ class ArticleCreate(CreateView):
 
 	def form_valid(self, form):
 		form.instance.author_id = self.request.user.pk
+
+		if form.cleaned_data['new_tag']:
+			tag = Tag.objects.create(tag=form.cleaned_data['new_tag'])
+			form.instance.tag_id = tag.pk
+
 		return super().form_valid(form)
 
 @method_decorator(login_required, name='dispatch')
