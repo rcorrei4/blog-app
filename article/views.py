@@ -6,12 +6,13 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 
-from django.contrib.auth.models import User
+from accounts.models import User
 from .models import Article, Tag
 from .forms import ArticleForm
 
 class ArticleList(ListView):
 	model = Article
+	queryset = Article.objects.all()[:6]
 
 class ArticleDetail(DetailView):
 	model = Article
