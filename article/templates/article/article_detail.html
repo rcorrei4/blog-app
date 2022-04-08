@@ -12,7 +12,7 @@
 {% block body %}
 <div class="div-content">
 	<aside class="aside-left">
-		<button id="like-btn" data-slug='{{ article.slug }}'>Like post</button>
+		<button id="like-btn" data-slug='{{ article.slug }}'>Like post {{ article.likes.count }}</button>
 	</aside>
 	<main>
 		<h1>{{ article.title }}</h1>

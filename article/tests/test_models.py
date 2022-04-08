@@ -5,8 +5,8 @@ class ArticleTestCase(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.article1 = Article.objects.create(title="Django Testing", text="how to write django tests")
-        cls.article2 = Article.objects.create(title="Class-based views", text="class-based views updated tutorial")
+        cls.article1 = Article.objects.create(title="Django Testing", body="how to write django tests")
+        cls.article2 = Article.objects.create(title="Class-based views", body="class-based views updated tutorial")
 
     def test_model_str(self):
         self.assertEqual(str(self.article1), "Django Testing")

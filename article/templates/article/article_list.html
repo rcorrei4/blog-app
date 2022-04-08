@@ -14,8 +14,8 @@
 		<div class="trending">
 			{% for article in object_list %}
 				<div class="article">
-					<h3>{{ article.author }}</h3>
-					<a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+					<p>{{ article.author }}</p>
+					<h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
 					<p>{{ article.created_at.date }}</p>
 				</div>
 			{% endfor %}
