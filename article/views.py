@@ -49,6 +49,13 @@ class ArticleDelete(DeleteView):
 		user = self.request.user
 		return Article.objects.filter(author=user)
 
+class ArticleTagList(ListView):
+	model = Article
+	
+	def get_queryset(self):
+		self.tag = get_object_or_404(Tag, tag=self.kwargs['tag'])
+		return Article.objects.filter(tag=self.tag)
+
 @login_required
 def like_article(request, slug):
 	user = get_object_or_404(User, username=request.user.username)

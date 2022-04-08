@@ -1,0 +1,48 @@
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+.div {
+	max-width: 1600px;
+	width: 90%;
+}
+
+.btn {
+	background-color: rgb(25, 25, 25);
+	color: white !important;
+	padding: 10px 20px;
+	border-radius: 50px;
+}
+
+nav {
+	display: flex;
+	justify-content: center;
+	border-bottom: 1px solid black;
+}
+
+nav a {
+	text-decoration: none;
+	color: black;
+}
+
+nav .div {
+	display: flex;
+	align-items: center;
+}
+
+nav .nav-menu {
+	display: flex;
+	margin-left: auto;
+	list-style-type: none;
+}
+
+nav .nav-menu a {
+	margin-left: 20px;
+}
+
+@media screen and (max-width: 425px) {
+	nav .nav-menu .btn-secondary {
+		display: none;
+	}
+}

@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}">
+	{% block head %}{% endblock %}
+	<title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+	<nav>
+		<div class="div">
+			<h1><a href="{% url 'articles' %}">Blog</a></h1>
+			{% if request.user.is_authenticated %}
+				<ul class="nav-menu">
+					<li><a class="btn" href="{% url 'new_article' %}">Write</a></li>
+				</ul>
+			{% else %}
+				<ul class="nav-menu">
+					<li class="btn-secondary"><a href="{% url 'new_article' %}">Write</a></li>
+					<li class="btn-secondary"><a href="{% url 'login' %}">Sign in</a></li>
+					<li><a class="btn" href="{% url 'register' %}">Get started</a></li>
+				</ul>
+			{% endif %}
+		</div>
+	</nav>
+	{% block body %}
+	{% endblock %}
+</body>
+</html>

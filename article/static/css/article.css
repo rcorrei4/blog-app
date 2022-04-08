@@ -1,0 +1,36 @@
+.div-content {
+	display: grid;
+	grid-template-columns: 10% 60% 30%;
+}
+
+.div-content .div {
+	width: 100%;
+}
+
+.div-content main {
+	margin: 0 5% 0 5%;
+}
+
+.aside-left {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-right: 1px solid black;
+}
+
+.aside-right {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-left: 1px solid black;
+}
+
+@media screen and (max-width: 768px) {
+	.div-content {
+		justify-items: center;
+	}
+
+	.div-content .div {
+		width: 90%;
+	}
+}

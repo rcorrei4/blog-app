@@ -1,16 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Articles</title>
-</head>
-<body>
-	<a href="{% url 'new_article' %}">Create article</a>
-	<ul>
-		{% for article in object_list %}
-			<li><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></li>
-		{% endfor %}
-	</ul>
-</body>
-</html>
+{% extends 'article/layout.html' %}
+{% load static %}
+
+{% block title %}Articles{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="div-content">
+	<div class="div">
+		<h2>Trending</h2>
+		<div class="trending">
+			{% for article in object_list %}
+				<div class="article">
+					<h3>{{ article.author }}</h3>
+					<a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+					<p>{{ article.created_at.date }}</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}
