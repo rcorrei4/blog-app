@@ -19,7 +19,7 @@
 		<p>{{ article.body | markdown | safe }}</p>
 		<p>{{ article.created_at }}</p>
 		Author: {{ article.author }}
-		{{ article.tag }}
+		<a href="{% url 'tag' article.tag %}">{{ article.tag }}</a>
 
 		{% if request.user == article.author %}
 			<a href="{% url 'edit_article' article.slug %}">Edit</a>
