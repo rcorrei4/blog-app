@@ -16,6 +16,7 @@
 			{% if request.user.is_authenticated %}
 				<ul class="nav-menu">
 					<li><a class="btn" href="{% url 'new_article' %}">Write</a></li>
+					<li><a href="{% url 'profile' request.user.id %}">Profile</a></li>
 				</ul>
 			{% else %}
 				<ul class="nav-menu">
