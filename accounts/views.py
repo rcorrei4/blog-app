@@ -21,11 +21,14 @@ def follow_user(request, pk):
 	user = get_object_or_404(User, username=request.user.username)
 	profile = get_object_or_404(User, id=pk)
 
-	if User.objects.filter(id=user.id, following__in=[profile]).count() == 0:
-		user.following.add(profile)
-
-		return JsonResponse({'result': 'followed'})
+	if user == profile:
+		return JsonResponse({'result': 'cant follow yourself'})
 	else:
-		user.following.remove(profile)
+		if User.objects.filter(id=user.id, following__in=[profile]).count() == 0:
+			user.following.add(profile)
 
-		return JsonResponse({'result': 'unfollowed'})
+			return JsonResponse({'result': 'followed'})
+		else:
+			user.following.remove(profile)
+
+			return JsonResponse({'result': 'unfollowed'})
