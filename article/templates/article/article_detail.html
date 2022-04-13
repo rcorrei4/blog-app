@@ -15,16 +15,15 @@
 		<button id="like-btn" data-slug='{{ article.slug }}'>Like post {{ article.likes.count }}</button>
 	</aside>
 	<main>
+		{% if request.user == article.author %}
+			<a href="{% url 'edit_article' article.slug %}">Edit</a>
+			<a href="{% url 'delete_article' article.slug %}">Delete</a>
+		{% endif %}
 		<h1>{{ article.title }}</h1>
 		<p>{{ article.body | markdown | safe }}</p>
 		<p>{{ article.created_at }}</p>
 		Author: {{ article.author }}
 		<a href="{% url 'tag' article.tag %}">{{ article.tag }}</a>
-
-		{% if request.user == article.author %}
-			<a href="{% url 'edit_article' article.slug %}">Edit</a>
-			<a href="{% url 'delete_article' article.slug %}">Delete</a>
-		{% endif %}
 	</main>
 	<aside class="aside-right">
 		test
