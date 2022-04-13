@@ -10,5 +10,6 @@ urlpatterns = [
     path('article/<slug:slug>/edit', views.ArticleUpdate.as_view(), name='edit_article'),
     path('article/<slug:slug>/delete', views.ArticleDelete.as_view(), name='delete_article'),
     path('article/<slug:slug>/like', views.like_article, name='like_article'),
+    path('article/profile/<int:pk>', views.ArticleProfileDetail.as_view(), name='profile'),
     path('tag/<str:tag>', views.ArticleTagList.as_view(), name='tag'),
 ]

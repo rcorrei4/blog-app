@@ -1,0 +1,30 @@
+{% extends 'article/layout.html' %}
+{% load static %}
+
+{% block title %}Articles{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="div-content">
+	<div class="div">
+		<h2>{{ object_list.first.author }}</h2>
+		<div>
+			<button id="follow-btn" data-id="{{ object_list.first.author.id }}">Follow</button>
+		</div>
+		<div class="trending">
+			{% for article in object_list %}
+				<div class="article">
+					<p>{{ article.author }}</p>
+					<h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+					<p>{{ article.created_at.date }}</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/article_profile.js' %}"></script>
+{% endblock %}
