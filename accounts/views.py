@@ -26,9 +26,11 @@ def follow_user(request, pk):
 	else:
 		if User.objects.filter(id=user.id, following__in=[profile]).count() == 0:
 			user.following.add(profile)
+			user.save()
 
 			return JsonResponse({'result': 'followed'})
 		else:
 			user.following.remove(profile)
+			user.save()
 
 			return JsonResponse({'result': 'unfollowed'})

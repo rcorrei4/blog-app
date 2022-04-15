@@ -29,6 +29,12 @@ class ArticleCreate(CreateView):
 			tag = Tag.objects.create(tag=form.cleaned_data['new_tag'])
 			form.instance.tag_id = tag.pk
 
+		self.object = form.save()
+
+		user = User.objects.get(id=self.request.user.pk)
+		user.articles.add(self.object)
+		user.save()
+
 		return super().form_valid(form)
 
 @method_decorator(login_required, name='dispatch')
@@ -64,6 +70,14 @@ class ArticleProfileDetail(ListView):
 
 	def get_queryset(self):
 		return Article.objects.filter(author__id=self.kwargs['pk'])
+
+class FollowingList(ListView):
+	model = User
+	template_name = 'article/following.html'
+
+	def get_queryset(self):
+		self.user = get_object_or_404(User, username=self.request.user.username)
+		return self.user
 
 @login_required
 def like_article(request, slug):
