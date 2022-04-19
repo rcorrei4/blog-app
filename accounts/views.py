@@ -28,9 +28,9 @@ def follow_user(request, pk):
 			user.following.add(profile)
 			user.save()
 
-			return JsonResponse({'result': 'followed'})
+			return JsonResponse({'result': 'Unfollow'})
 		else:
 			user.following.remove(profile)
 			user.save()
 
-			return JsonResponse({'result': 'unfollowed'})
+			return JsonResponse({'result': 'Follow'})
