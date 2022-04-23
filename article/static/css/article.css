@@ -1,6 +1,7 @@
 .div-content {
 	display: grid;
 	grid-template-columns: 10% 60% 30%;
+	border-bottom: 1px solid black;
 }
 
 .div-content .div {
