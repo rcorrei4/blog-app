@@ -13,6 +13,10 @@
 	<nav>
 		<div class="div">
 			<h1><a href="{% url 'articles' %}">Blog</a></h1>
+			<form method="get" action="{% url 'search_article' %}">
+				<input type="text" name="q">
+				<button type="submit">Search</button>
+			</form>
 			{% if request.user.is_authenticated %}
 				<ul class="nav-menu">
 					<li><a class="btn" href="{% url 'new_article' %}">Write</a></li>

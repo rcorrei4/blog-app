@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
 
 from accounts.models import User
 from .models import Article, Tag
@@ -78,6 +79,17 @@ class FollowingList(ListView):
 	def get_queryset(self):
 		self.user = get_object_or_404(User, username=self.request.user.username)
 		return self.user
+
+class SearchArticleView(ListView):
+	model = Article
+	template_name = 'article/article_results.html'
+
+	def get_queryset(self):
+		query = self.request.GET.get('q')
+
+		return Article.objects.filter(
+			Q(title__icontains=query) | Q(slug__icontains=query)
+		)
 
 @login_required
 def like_article(request, slug):
