@@ -28,12 +28,20 @@ nav a {
 
 nav .div {
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
+}
+
+nav .div form {
+	width: 40%;
+}
+
+nav .div input {
+	width: 80%;
 }
 
 nav .nav-menu {
 	display: flex;
-	margin-left: auto;
 	list-style-type: none;
 }
 
