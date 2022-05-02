@@ -12,6 +12,7 @@ class Article(models.Model):
 	updated_at = models.DateTimeField(auto_now=True)
 
 	likes = models.ManyToManyField(User, related_name='likes')
+	comments = models.ManyToManyField('ArticleComment', related_name='comments')
 
 	author = models.ForeignKey(User, on_delete=models.PROTECT, related_name='article_author')
 	tag = models.ForeignKey('Tag', blank=True, null=True, on_delete=models.PROTECT, related_name='article_tag')
@@ -21,6 +22,10 @@ class Article(models.Model):
 
 	def get_absolute_url(self):
 		return reverse("article", kwargs={"slug": self.slug})
+
+class ArticleComment(models.Model):
+	author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_author')
+	body = models.TextField()
 
 class Tag(models.Model):
 	tag = models.CharField(max_length=128, unique=True)
