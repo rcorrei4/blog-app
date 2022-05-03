@@ -1,10 +1,15 @@
-from django.forms import CharField, ModelForm
+from django import forms
 
-from .models import Article
+from .models import Article, ArticleComment
 
-class ArticleForm(ModelForm):
-	new_tag = CharField(max_length=128, required=False)
+class ArticleForm(forms.ModelForm):
+	new_tag = forms.CharField(max_length=128, required=False)
 
 	class Meta:
 		model = Article
 		fields = ['title', 'body', 'tag']
+
+class ArticleCommentForm(forms.ModelForm):
+	class Meta:
+		model = ArticleComment
+		fields = ['body']
