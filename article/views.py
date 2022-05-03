@@ -8,8 +8,8 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Q
 
 from accounts.models import User
-from .models import Article, Tag
-from .forms import ArticleForm
+from .models import Article, ArticleComment, Tag
+from .forms import ArticleForm, ArticleCommentForm
 
 class ArticleList(ListView):
 	model = Article
@@ -56,6 +56,25 @@ class ArticleDelete(DeleteView):
 	def get_queryset(self):
 		user = self.request.user
 		return Article.objects.filter(author=user)
+
+@method_decorator(login_required, name='dispatch')
+class ArticleCommentCreate(CreateView):
+	model = ArticleComment
+	form_class = ArticleCommentForm
+	template_name = 'article/article_comment_form.html'
+
+	def form_valid(self, form):
+		form.instance.author_id = self.request.user.pk
+
+		self.object = form.save()
+
+		article = Article.objects.get(slug=self.kwargs['slug'])
+		article.comments.add(self.object)
+		article.save()
+
+		self.success_url = article.get_absolute_url()
+
+		return super().form_valid(form)
 
 class ArticleTagList(ListView):
 	model = Article
