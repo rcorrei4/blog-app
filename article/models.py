@@ -26,6 +26,7 @@ class Article(models.Model):
 class ArticleComment(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_author')
 	body = models.TextField()
+	created_at = models.DateTimeField(auto_now_add=True)
 
 class Tag(models.Model):
 	tag = models.CharField(max_length=128, unique=True)
