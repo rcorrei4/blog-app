@@ -26,9 +26,11 @@
 		<a href="{% url 'tag' article.tag %}">{{ article.tag }}</a>
 		<br>
 		<h2>Comments</h2>
+			<a href="{% url 'new_article_comment' article.slug %}">New comment</a>
 			{% for comment in article.comments.all %}
 				<div>
 					<b>{{ comment.author.username }}</b>
+					{{ comment.created_at }}
 					<p>{{ comment.body }}</p>
 				</div>
 			{% endfor %}
