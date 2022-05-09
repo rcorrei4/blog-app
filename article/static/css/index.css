@@ -21,6 +21,11 @@
 	color: black;
 }
 
+.trending img {
+	width: 300px;
+	height: auto;
+}
+
 .article {
 	width: 100%;
 }
