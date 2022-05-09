@@ -110,6 +110,28 @@ class SearchArticleView(ListView):
 			Q(title__icontains=query) | Q(slug__icontains=query)
 		)
 
+class SavedArticlesView(ListView):
+	model = User
+	template_name = 'article/article_results.html'
+
+	def get_queryset(self):
+		self.user = get_object_or_404(User, username=self.request.user.username)
+		return self.user.saved_articles.all()
+
+@login_required
+def save_article(request, slug):
+	user = get_object_or_404(User, username=request.user.username)
+	article = get_object_or_404(Article, slug=slug)
+
+	if article not in user.saved_articles.all():
+		user.saved_articles.add(article)
+
+		return JsonResponse({'result': 'saved'})
+	else:
+		user.saved_articles.remove(article)
+
+		return JsonResponse({'result': 'removed'})
+
 @login_required
 def like_article(request, slug):
 	user = get_object_or_404(User, username=request.user.username)
