@@ -21,13 +21,15 @@
 				{% endif %}
 			{% endif %}
 		</div>
-		<div class="trending">
+		<div class="trending articles">
 			{% for article in object_list %}
 				<div class="article">
+					<div class="content">
+						<p class="article-date">{{ article.created_at.date|date:"M d" }}</p>
+						<h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+						<p>{{ article.body | truncatechars:100 | markdown | safe }}</p>
+					</div>
 					{{ article.get_article_img | markdown | safe }}
-					<p>{{ article.author }}</p>
-					<h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
-					<p>{{ article.created_at.date }}</p>
 				</div>
 			{% endfor %}
 		</div>

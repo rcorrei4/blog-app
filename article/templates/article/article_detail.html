@@ -31,7 +31,7 @@
 			{% for comment in article.comments.all %}
 				<div>
 					<b>{{ comment.author.username }}</b>
-					{{ comment.created_at }}
+					{{ comment.created_at|date:"M d" }}
 					<p>{{ comment.body }}</p>
 				</div>
 			{% endfor %}
