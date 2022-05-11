@@ -26,9 +26,13 @@ class Article(models.Model):
 
 	def get_article_img(self):
 		markdown_text = md.markdown(self.body, extensions=['markdown.extensions.fenced_code'])
-		markdown_cuted = markdown_text[markdown_text.index('<img'):]
-	
-		return markdown_cuted[:markdown_cuted.index('/>')+2]
+
+		try:
+			markdown_cuted = markdown_text[markdown_text.index('<img'):]
+		
+			return markdown_cuted[:markdown_cuted.index('/>')+2]
+		except ValueError:
+			return False
 
 class ArticleComment(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_author')
