@@ -22,10 +22,18 @@
 }
 
 .trending img {
-	width: 300px;
+	width: 20%;
 	height: auto;
 }
 
 .article {
 	width: 100%;
+}
+
+.articles .article {
+	display: flex;
+}
+
+.content .article-date {
+	color: rgba(0, 0, 0, .5);
 }
