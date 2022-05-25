@@ -2,7 +2,9 @@ from accounts.models import User
 from django.db import models
 from django.urls import reverse
 from autoslug import AutoSlugField
+
 import markdown as md
+import readtime
 
 class Article(models.Model):
 	title = models.CharField(max_length=128)
@@ -11,12 +13,17 @@ class Article(models.Model):
 	slug = AutoSlugField(populate_from='title', unique_with='title', null=False)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
+	reading_time = models.CharField(max_length=128)
 
 	likes = models.ManyToManyField(User, related_name='likes')
 	comments = models.ManyToManyField('ArticleComment', related_name='comments')
 
 	author = models.ForeignKey(User, on_delete=models.PROTECT, related_name='article_author')
 	tag = models.ForeignKey('Tag', blank=True, null=True, on_delete=models.PROTECT, related_name='article_tag')
+
+	def save(self, *args, **kwargs):
+		self.reading_time = readtime.of_text(md.markdown(self.body))
+		super(Article, self).save(*args, **kwargs)
 
 	def __str__(self):
 		return self.title
@@ -33,6 +40,7 @@ class Article(models.Model):
 			return markdown_cuted[:markdown_cuted.index('/>')+2]
 		except ValueError:
 			return False
+		
 
 class ArticleComment(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_author')

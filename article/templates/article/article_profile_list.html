@@ -6,6 +6,7 @@
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
 {% endblock %}
 
 {% block body %}
@@ -21,15 +22,17 @@
 				{% endif %}
 			{% endif %}
 		</div>
-		<div class="trending articles">
+		<div class="trending articles article-list">
 			{% for article in object_list %}
 				<div class="article">
 					<div class="content">
 						<p class="article-date">{{ article.created_at.date|date:"M d" }}</p>
-						<h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
-						<p>{{ article.body | truncatechars:100 | markdown | safe }}</p>
+						<h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
+						<div class="article-body">{{ article.body | truncatechars:100 | markdown | safe }}</div>
 					</div>
-					{{ article.get_article_img | markdown | safe }}
+					{% if article.get_article_img %}
+						{{ article.get_article_img | markdown | safe }}
+					{% endif %}
 				</div>
 			{% endfor %}
 		</div>

@@ -34,6 +34,24 @@
 	display: flex;
 }
 
-.content .article-date {
+.article h3 {
+	color: rgba(41, 41, 41, 1);
+}
+
+.article-info {
+	font-size: 0.8em;
+	color: rgba(0, 0, 0, .5);
+}
+
+.article-list {
+	display: flex;
+	flex-direction: column;
+}
+
+.article-list .article {
+	margin-top: 50px;
+}
+
+.article-list .article-body {
 	color: rgba(0, 0, 0, .5);
 }
