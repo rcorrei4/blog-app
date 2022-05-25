@@ -2,6 +2,9 @@
 	display: grid;
 	grid-template-columns: 10% 60% 30%;
 	border-bottom: 1px solid black;
+	line-height: 32px;
+	font-size: 20px;
+	letter-spacing: -0.003em;
 }
 
 .div-content .div {
@@ -10,6 +13,17 @@
 
 .div-content main {
 	margin: 0 5% 0 5%;
+}
+
+.div-content main code {
+	display: block;
+	font-size: 16px;
+	max-width: 100%;
+	overflow: auto;
+}
+
+.div-content a {
+	color: rgb(25, 25, 25);
 }
 
 .div-content main img {
