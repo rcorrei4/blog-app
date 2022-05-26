@@ -34,11 +34,18 @@
 	display: flex;
 }
 
+.article .article-author {
+	margin-bottom: 8px;
+}
+
 .article h3 {
+	margin-top: 0;
+	margin-bottom: 0;
 	color: rgba(41, 41, 41, 1);
 }
 
 .article-info {
+	margin-top: 8px;
 	font-size: 0.8em;
 	color: rgba(0, 0, 0, .5);
 }
@@ -54,4 +61,8 @@
 
 .article-list .article-body {
 	color: rgba(0, 0, 0, .5);
+}
+
+.article-list .article {
+	align-items: center;
 }
