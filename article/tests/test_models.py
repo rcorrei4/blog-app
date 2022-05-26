@@ -21,6 +21,10 @@ class ArticleTestCase(TestCase):
 		self.assertEqual(str(self.article1), 'Django Testing')
 		self.assertEqual(str(self.article2), 'Class-based views')
 
+	def test_reading_time(self):
+		self.assertEqual(str(self.article1.reading_time), '1 min read')
+		self.assertEqual(str(self.article2.reading_time), '1 min read')
+
 	def test_get_absolute_url(self):
 		self.assertEqual('/article/django-testing/', self.article1.get_absolute_url())
 		self.assertEqual('/article/class-based-views/', self.article2.get_absolute_url())
