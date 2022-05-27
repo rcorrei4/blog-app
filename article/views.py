@@ -13,10 +13,17 @@ from .forms import ArticleForm, ArticleCommentForm
 
 class ArticleList(ListView):
 	model = Article
-	queryset = Article.objects.all()[:6]
+	queryset = Article.objects.all().order_by('-views')[:6]
 
 class ArticleDetail(DetailView):
 	model = Article
+
+	def get_object(self, queryset=None):
+		object = super(ArticleDetail, self).get_object()
+		object.views += 1
+		object.save()
+
+		return object
 
 @method_decorator(login_required, name='dispatch')
 class ArticleCreate(CreateView):
