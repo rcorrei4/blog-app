@@ -1,0 +1,16 @@
+.article-list {
+	display: flex;
+	flex-direction: column;
+}
+
+.article-list .article {
+	margin-top: 50px;
+}
+
+.article-list .article-body {
+	color: rgba(0, 0, 0, .5);
+}
+
+.article-list .article {
+	align-items: center;
+}

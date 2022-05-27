@@ -13,56 +13,43 @@
 .trending {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	column-gap: 20px;
 	width: 90%;
+	max-width: 1200px;
 }
 
-.trending a {
+.trending .article {
+	width: 100%;
+}
+
+.trending .articles .article {
+	display: flex;
+}
+
+.trending .article .article-author {
+	color: rgba(41, 41, 41, 1);
+	font-size: 13px;
+	font-weight: bold;
+	margin-bottom: 8px;
+}
+
+.trending .article h3 {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.trending .article a {
 	text-decoration: none;
-	color: black;
+	color: rgba(41, 41, 41, 1);
 }
 
-.trending img {
+.trending .article img {
 	width: 20%;
 	height: auto;
 }
 
-.article {
-	width: 100%;
-}
-
-.articles .article {
-	display: flex;
-}
-
-.article .article-author {
-	margin-bottom: 8px;
-}
-
-.article h3 {
-	margin-top: 0;
-	margin-bottom: 0;
-	color: rgba(41, 41, 41, 1);
-}
-
-.article-info {
+.trending .article-info {
 	margin-top: 8px;
 	font-size: 0.8em;
 	color: rgba(0, 0, 0, .5);
-}
-
-.article-list {
-	display: flex;
-	flex-direction: column;
-}
-
-.article-list .article {
-	margin-top: 50px;
-}
-
-.article-list .article-body {
-	color: rgba(0, 0, 0, .5);
-}
-
-.article-list .article {
-	align-items: center;
 }
