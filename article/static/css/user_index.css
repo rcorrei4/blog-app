@@ -1,0 +1,8 @@
+.div-content {
+	display: flex;
+	justify-content: center;
+}
+
+.div-content .div {
+	width: 90%;
+}
