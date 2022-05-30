@@ -4,16 +4,24 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect, get_object_or_404
 from django.db.models import Q
 
 from accounts.models import User
 from .models import Article, ArticleComment, Tag
 from .forms import ArticleForm, ArticleCommentForm
 
-class ArticleList(ListView):
+class UserIndexList(ListView):
 	model = Article
-	queryset = Article.objects.all().order_by('-views')[:6]
+
+	def get_queryset(self):
+		if self.request.user.is_authenticated:
+			self.template_name = 'article/user_index.html'
+			user = self.request.user
+			return user.following.all()
+		else:
+			self.template_name = 'article/article_list.html'
+			return Article.objects.all().order_by('-views')[:6]
 
 class ArticleDetail(DetailView):
 	model = Article
