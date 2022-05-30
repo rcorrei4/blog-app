@@ -1,0 +1,50 @@
+{% extends 'article/layout.html' %}
+{% load static %}
+{% load markdown_extras %}
+
+{% block title %}Blog{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/user_index.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/article_list.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="div-content">
+	<div class="div">
+		<h2>Following</h2>
+		<div class="articles">
+			{% if object_list %}
+				{% for profile in object_list %}
+					{% for article in profile.articles.all %}
+						<div class="article">
+							<div class="content">
+								<p class="article-author">
+									{{ article.author }} · <span>{{ article.created_at.date|date:"M d" }}</span>
+								</p>
+								<h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+								<div class="article-body">
+									{{ article.body | markdown | safe | truncatechars:200 }}
+								</div>
+								<p class="article-info">
+									<a class="article-tag" href="#">{{ article.tag }} </a>
+									<span>{{ article.reading_time }}</span>
+								</p>
+							</div>
+							{% if article.get_article_img %}
+							<div class="article-img">
+								{{ article.get_article_img | markdown | safe }}
+							</div>
+							{% endif %}
+						</div>
+					{% endfor %}
+				{% endfor %}
+			{% else %}
+				Articles from the writers you follow will appear here.
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/article_list.js' %}"></script>
+{% endblock %}
