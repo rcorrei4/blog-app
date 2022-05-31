@@ -12,6 +12,11 @@
 	font-size: 14px;
 }
 
+.article .article-author a {
+	text-decoration: none;
+	color: rgba(41, 41, 41, 1);;
+}
+
 .article h3 a {
 	font-size: 22px;
 	color: rgba(41, 41, 41, 1);
@@ -25,6 +30,7 @@
 	font-style: normal;
 	font-family: serif;
 	font-size: 16px;
+	line-height: 24px;
 	color: rgba(41, 41, 41, 1);;
 }
 

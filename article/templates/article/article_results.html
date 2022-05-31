@@ -1,25 +1,45 @@
 {% extends 'article/layout.html' %}
 {% load static %}
+{% load markdown_extras %}
 
 {% block title %}Search Articles{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/user_index.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/article_list.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/article_results.css' %}">
 {% endblock %}
 
 {% block body %}
 <div class="div-content">
 	<div class="div">
-		<h2>Results</h2>
-		<div class="trending">
+		<h1 class="page-title">Results for <span>{{ request.GET.q }}</span></h1>
+		<div class="articles">
 			{% for article in object_list %}
 				<div class="article">
-					<p>{{ article.author }}</p>
-					<h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
-					<p>{{ article.created_at.date|date:"M d" }}</p>
+					<div class="content">
+						<p class="article-author">
+							<a href="{% url 'profile' article.author.id %}">{{ article.author }}</a> · <span>{{ article.created_at.date|date:"M d" }}</span>
+						</p>
+						<h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+						<div class="article-body">
+							{{ article.body | markdown | safe | truncatechars:200 }}
+						</div>
+						<p class="article-info">
+							<a class="article-tag" href="{% url 'tag' article.tag %}">{{ article.tag }} </a>
+							<span>{{ article.reading_time }}</span>
+						</p>
+					</div>
+					{% if article.get_article_img %}
+					<div class="article-img">
+						{{ article.get_article_img | markdown | safe }}
+					</div>
+					{% endif %}
 				</div>
 			{% endfor %}
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript" src="{% static 'js/article_list.js' %}"></script>
 {% endblock %}

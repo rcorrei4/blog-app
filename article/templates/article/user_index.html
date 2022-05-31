@@ -20,14 +20,14 @@
 						<div class="article">
 							<div class="content">
 								<p class="article-author">
-									{{ article.author }} · <span>{{ article.created_at.date|date:"M d" }}</span>
+									<a href="{% url 'profile' article.author.id %}">{{ article.author }}</a> · <span>{{ article.created_at.date|date:"M d" }}</span>
 								</p>
 								<h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
 								<div class="article-body">
 									{{ article.body | markdown | safe | truncatechars:200 }}
 								</div>
 								<p class="article-info">
-									<a class="article-tag" href="#">{{ article.tag }} </a>
+									<a class="article-tag" href="{% url 'tag' article.tag %}">{{ article.tag }} </a>
 									<span>{{ article.reading_time }}</span>
 								</p>
 							</div>
