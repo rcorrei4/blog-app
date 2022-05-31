@@ -99,12 +99,12 @@ class ArticleTagList(ListView):
 		self.tag = get_object_or_404(Tag, tag=self.kwargs['tag'])
 		return Article.objects.filter(tag=self.tag)
 
-class ArticleProfileDetail(ListView):
-	model = Article
+class ProfileDetail(DetailView):
+	model = User
 	template_name = 'article/article_profile_list.html'
 
 	def get_queryset(self):
-		return Article.objects.filter(author__id=self.kwargs['pk'])
+		return User.objects.filter(id=self.kwargs['pk'])
 
 class SearchArticleView(ListView):
 	model = Article
