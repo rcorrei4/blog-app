@@ -5,7 +5,6 @@ from . import views
 
 urlpatterns = [
     path('', views.UserIndexList.as_view(), name='articles'),
-    path('following/', views.FollowingList.as_view(), name='following'),
     path('article/search', views.SearchArticleView.as_view(), name="search_article"),
     path('article/new/', views.ArticleCreate.as_view(), name='new_article'),
     path('article/<slug:slug>/', views.ArticleDetail.as_view(), name='article'),
