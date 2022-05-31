@@ -13,7 +13,7 @@ urlpatterns = [
     path('article/<slug:slug>/like', views.like_article, name='like_article'),
     path('article/<slug:slug>/save', views.save_article, name='save_article'),
     path('article/<slug:slug>/saved', views.SavedArticlesView.as_view(), name='saved_articles'),
-    path('article/profile/<int:pk>', views.ArticleProfileDetail.as_view(), name='profile'),
+    path('article/profile/<int:pk>', views.ProfileDetail.as_view(), name='profile'),
     path('article/<slug:slug>/comment/new', views.ArticleCommentCreate.as_view(), name='new_article_comment'),
     path('tag/<str:tag>', views.ArticleTagList.as_view(), name='tag'),
 ]
