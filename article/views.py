@@ -106,14 +106,6 @@ class ArticleProfileDetail(ListView):
 	def get_queryset(self):
 		return Article.objects.filter(author__id=self.kwargs['pk'])
 
-class FollowingList(ListView):
-	model = User
-	template_name = 'article/following.html'
-
-	def get_queryset(self):
-		self.user = get_object_or_404(User, username=self.request.user.username)
-		return self.user
-
 class SearchArticleView(ListView):
 	model = Article
 	template_name = 'article/article_results.html'
