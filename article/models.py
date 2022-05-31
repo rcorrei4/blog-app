@@ -17,7 +17,7 @@ class Article(models.Model):
 
 	likes = models.ManyToManyField(User, related_name='likes')
 	comments = models.ManyToManyField('ArticleComment', related_name='comments')
-	views = models.IntegerField()
+	views = models.IntegerField(blank=True, null=True)
 
 	author = models.ForeignKey(User, on_delete=models.PROTECT, related_name='article_author')
 	tag = models.ForeignKey('Tag', blank=True, null=True, on_delete=models.PROTECT, related_name='article_tag')
