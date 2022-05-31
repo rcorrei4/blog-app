@@ -21,7 +21,7 @@ class UserIndexList(ListView):
 			return user.following.all()
 		else:
 			self.template_name = 'article/article_list.html'
-			return Article.objects.all().order_by('-views')[:6]
+			return Article.objects.all().order_by('-likes', '-views')[:6]
 
 class ArticleDetail(DetailView):
 	model = Article
