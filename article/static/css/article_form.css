@@ -1,0 +1,10 @@
+.article-form {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
+}
+
+.article-form form {
+	display: grid;
+	width: 90%;
+}
