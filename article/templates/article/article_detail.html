@@ -20,13 +20,16 @@
 			<a href="{% url 'edit_article' article.slug %}">Edit</a>
 			<a href="{% url 'delete_article' article.slug %}">Delete</a>
 		{% endif %}
-		<h1>{{ article.title }}</h1>
-		<p>{{ article.body | markdown | safe }}</p>
-		<p>{{ article.created_at }}</p>
-		Author: <a href="{% url 'profile' article.author.id %}">{{ article.author }}</a> <br>
-		Tags: <a href="{% url 'tag' article.tag %}">{{ article.tag }}</a>
-		<br>
-		<h2>Comments</h2>
+		<div class="article-body">
+			<p>{{ article.created_at }}</p>
+			Author: <a href="{% url 'profile' article.author.id %}">{{ article.author }}</a> <br>
+			<h1>{{ article.title }}</h1>
+			<p>{{ article.body | markdown | safe }}</p>
+			<br>
+		</div>
+		<hr>
+		<div class="article-comments">
+			<h2>Comments</h2>
 			<a href="{% url 'new_article_comment' article.slug %}">New comment</a>
 			{% for comment in article.comments.all %}
 				<div>
@@ -35,9 +38,12 @@
 					<p>{{ comment.body }}</p>
 				</div>
 			{% endfor %}
+		</div>
 	</main>
 	<aside class="aside-right">
-		test
+		<a href="{% url 'profile' article.author.id %}">{{ article.author }}</a>
+		<p>{{ article.author.followers.all.count }} Followers</p>
+		<button class="follow-btn">Follow</button>
 	</aside>
 </div>
 
