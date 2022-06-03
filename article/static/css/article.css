@@ -11,7 +11,7 @@
 	width: 100%;
 }
 
-.div-content main {
+.div-content main .article-body {
 	margin: 0 5% 0 5%;
 }
 
@@ -20,6 +20,15 @@
 	font-size: 16px;
 	max-width: 100%;
 	overflow: auto;
+}
+
+.div-content main hr {
+	width: 100%;
+	border-bottom: 1px solid black;
+}
+
+.div-content .article-comments {
+	margin: 0 5% 0 5%;
 }
 
 .div-content a {
