@@ -16,18 +16,20 @@
 		<button id="save-btn" data-slug='{{ article.slug }}'>Save article</button>
 	</aside>
 	<main>
-		{% if request.user == article.author %}
-			<a href="{% url 'edit_article' article.slug %}">Edit</a>
-			<a href="{% url 'delete_article' article.slug %}">Delete</a>
-		{% endif %}
-		<div class="article-body">
-			<p>{{ article.created_at }}</p>
-			Author: <a href="{% url 'profile' article.author.id %}">{{ article.author }}</a> <br>
-			<h1>{{ article.title }}</h1>
-			<p>{{ article.body | markdown | safe }}</p>
-			<br>
+		<div>
+			{% if request.user == article.author %}
+				<a href="{% url 'edit_article' article.slug %}">Edit</a>
+				<a href="{% url 'delete_article' article.slug %}">Delete</a>
+			{% endif %}
+			<div class="article-body">
+				<p>{{ article.created_at }}</p>
+				Author: <a href="{% url 'profile' article.author.id %}">{{ article.author }}</a> <br>
+				<h1>{{ article.title }}</h1>
+				<p>{{ article.body | markdown | safe }}</p>
+				<br>
+			</div>
+			<hr>
 		</div>
-		<hr>
 		<div class="article-comments">
 			<h2>Comments</h2>
 			<a href="{% url 'new_article_comment' article.slug %}">New comment</a>
@@ -43,7 +45,13 @@
 	<aside class="aside-right">
 		<a href="{% url 'profile' article.author.id %}">{{ article.author }}</a>
 		<p>{{ article.author.followers.all.count }} Followers</p>
-		<button class="follow-btn">Follow</button>
+		{% if not request.user == user.id %}
+			{% if article.author in request.user.following.all %}
+				<button id="follow-btn" data-id="{{ article.author.id }}">Unfollow</button>
+			{% else %}
+				<button id="follow-btn" data-id="{{ article.author.id }}">Follow</button>
+			{% endif %}
+		{% endif %}
 	</aside>
 </div>
 
