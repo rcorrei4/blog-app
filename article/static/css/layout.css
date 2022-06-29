@@ -38,8 +38,21 @@ nav .div form {
 	width: 40%;
 }
 
-nav .div input {
-	width: 80%;
+nav .div form input {
+	padding: 5px 20px;
+	width: 70%;
+	border-radius: 50px 0px 0px 50px;
+	border: .5px solid rgba(25, 25, 25, 0.5);
+	outline: none;
+}
+
+nav .div form button {
+	font-weight: bold;
+	outline: none;
+	border: none;
+	border-radius: 0px 50px 50px 0px;
+	padding: 6px 11px;
+	margin-left: -5px;
 }
 
 nav .nav-menu {
