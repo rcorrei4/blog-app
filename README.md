@@ -5,5 +5,5 @@ A blogging website inspired on Medium made with Django <br>
 - [x] Change like view and save view method to POST
 - [ ] Test views
 - [ ] Change article views to be based on IP visits
-- [ ] Logged-in index page
+- [X] Logged-in index page
 - [ ] Recommendation System
