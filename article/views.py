@@ -6,6 +6,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, get_object_or_404
 from django.db.models import Q
+from hitcount.views import HitCountDetailView
 
 from accounts.models import User
 from .models import Article, ArticleComment, Tag
@@ -21,10 +22,11 @@ class UserIndexList(ListView):
 			return user.following.all()
 		else:
 			self.template_name = 'article/article_list.html'
-			return Article.objects.all().order_by('-likes', '-views')[:6]
+			return Article.objects.all().order_by('-likes', '-hit_count_generic__hits')[:6]
 
-class ArticleDetail(DetailView):
+class ArticleDetail(HitCountDetailView):
 	model = Article
+	count_hit = True
 
 	def get_object(self, queryset=None):
 		object = super(ArticleDetail, self).get_object()

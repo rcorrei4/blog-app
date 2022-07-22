@@ -1,6 +1,7 @@
 {% extends 'article/layout.html' %}
 
 {% load markdown_extras %}
+{% load hitcount_tags %}
 {% load static %}
 
 {% block title %}Article{% endblock %}
@@ -20,6 +21,7 @@
 			{% if request.user == article.author %}
 				<a href="{% url 'edit_article' article.slug %}">Edit</a>
 				<a href="{% url 'delete_article' article.slug %}">Delete</a>
+				{{ article.hit_count.hits }}
 			{% endif %}
 			<div class="article-body">
 				<p>{{ article.created_at }}</p>

@@ -2,11 +2,15 @@ from accounts.models import User
 from django.db import models
 from django.urls import reverse
 from autoslug import AutoSlugField
+from django.contrib.contenttypes.fields import GenericRelation
+
+from hitcount.models import HitCountMixin
+from hitcount.settings import MODEL_HITCOUNT
 
 import markdown as md
 import readtime
 
-class Article(models.Model):
+class Article(models.Model, HitCountMixin):
 	title = models.CharField(max_length=128)
 	body = models.TextField(blank=True, null=True)
 	date = models.DateField(auto_now=True)
@@ -18,6 +22,10 @@ class Article(models.Model):
 	likes = models.ManyToManyField(User, related_name='likes')
 	comments = models.ManyToManyField('ArticleComment', related_name='comments')
 	views = models.IntegerField(blank=True, null=True)
+	hit_count_generic = GenericRelation(
+		MODEL_HITCOUNT, object_id_field='object_pk',
+		related_query_name='hit_count_generic_relation'
+	)
 
 	author = models.ForeignKey(User, on_delete=models.PROTECT, related_name='article_author')
 	tag = models.ForeignKey('Tag', blank=True, null=True, on_delete=models.PROTECT, related_name='article_tag')
