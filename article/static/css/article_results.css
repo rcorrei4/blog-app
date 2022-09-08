@@ -5,3 +5,19 @@
 .page-title span {
 	color: rgba(41, 41, 41, 1);
 }
+
+.empty_img {
+	display: grid;
+	justify-items: center;
+	text-align: center;
+}
+
+.empty_img a {
+	background-color: rgb(25, 25, 25);
+	color: white !important;
+	font-weight: bold;
+	font-size: 18px;
+	padding: 10px 20px;
+	border-radius: 50px;
+	text-decoration: none;
+}

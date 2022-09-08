@@ -37,6 +37,14 @@
 					{% endif %}
 				</div>
 			{% endfor %}
+			{% if not object_list %}
+				<div class="empty_img">
+					<img src="{% static 'images/nothing-found.png' %}" width="10%">
+					<h2>No results found.</h2>
+					<p>Try different search terms or submit your own article about your search.</p>
+					<a href="{% url 'new_article' %}">Write article</a>
+				</div>
+			{% endif %}
 		</div>
 	</div>
 </div>

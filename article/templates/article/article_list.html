@@ -19,6 +19,13 @@
 					<p class="article-info">{{ article.created_at.date|date:"M d" }} · {{ article.reading_time }}</p>
 				</div>
 			{% endfor %}
+			{% if not object_list %}
+			<div class="empty_img">
+				<img src="{% static 'images/tumbleweed.gif' %}">
+				<p>Looks like theres no articles yet...</p>
+				<a href="{% url 'new_article' %}">Be the first author of BlogApp</a>
+			<div>
+			{% endif %}
 		</div>
 	</div>
 </div>
