@@ -21,7 +21,7 @@ class Article(models.Model, HitCountMixin):
 
 	likes = models.ManyToManyField(User, related_name='likes')
 	comments = models.ManyToManyField('ArticleComment', related_name='comments')
-	views = models.IntegerField(blank=True, null=True)
+	views = models.IntegerField(default=0)
 	hit_count_generic = GenericRelation(
 		MODEL_HITCOUNT, object_id_field='object_pk',
 		related_query_name='hit_count_generic_relation'
