@@ -22,12 +22,13 @@
 					<li><a class="btn" href="{% url 'new_article' %}">Write</a></li>
 					<li><a href="{% url 'saved_articles' request.user.id %}">Saved</a></li>
 					<li><a href="{% url 'profile' request.user.id %}">Profile</a></li>
+					<li><a href="{% url 'account_logout' %}">Logout</a></li>
 				</ul>
 			{% else %}
 				<ul class="nav-menu">
 					<li class="btn-secondary"><a href="{% url 'new_article' %}">Write</a></li>
-					<li class="btn-secondary"><a href="{% url 'login' %}">Sign in</a></li>
-					<li><a class="btn" href="{% url 'register' %}">Get started</a></li>
+					<li class="btn-secondary"><a href="{% url 'account_login' %}">Sign in</a></li>
+					<li><a class="btn" href="{% url 'account_signup' %}">Get started</a></li>
 				</ul>
 			{% endif %}
 		</div>
