@@ -41,4 +41,4 @@ class TagTestCase(TestCase):
 		cls.tag = Tag.objects.create(tag='tagname')
 
 	def test_model_str(self):
-		self.assertEqual(str(self.tag), 'tagname')
+		self.assertEqual(str(self.tag), 'Tagname')
