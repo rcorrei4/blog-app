@@ -40,6 +40,9 @@ class Article(models.Model, HitCountMixin):
 	def get_absolute_url(self):
 		return reverse("article", kwargs={"slug": self.slug})
 
+	def get_article_body_truncated(self):
+		return md.markdown(self.body[:200], extensions=['markdown.extensions.fenced_code']).strip()
+
 	def get_article_img(self):
 		markdown_text = md.markdown(self.body, extensions=['markdown.extensions.fenced_code'])
 

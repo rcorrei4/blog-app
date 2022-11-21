@@ -33,7 +33,7 @@
 							</p>
 							<h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
 							<div class="article-body">
-								{{ article.body | markdown | safe | truncatechars:200 }}
+								{{ article.get_article_body_truncated | safe }}
 							</div>
 							<p class="article-info">
 								<a class="article-tag" href="{% url 'tag' article.tag %}">{{ article.tag }} </a>
