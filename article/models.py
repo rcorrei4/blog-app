@@ -67,7 +67,7 @@ class Tag(models.Model):
 	tag = models.CharField(max_length=128, unique=True)
 
 	def save(self, *args, **kwargs):
-		self.tag = self.tag.captalize()
+		self.tag = self.tag.capitalize()
 
 		super(Tag, self).save(*args, **kwargs)
 
