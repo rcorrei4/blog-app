@@ -21,7 +21,8 @@ class Article(models.Model, HitCountMixin):
 
 	likes = models.ManyToManyField(User, related_name='likes')
 	comments = models.ManyToManyField('ArticleComment', related_name='comments')
-	views = models.IntegerField(default=0)
+
+	# Article views counting from users ip address (HITCOUNT_HITS_PER_IP_LIMIT=1)
 	hit_count_generic = GenericRelation(
 		MODEL_HITCOUNT, object_id_field='object_pk',
 		related_query_name='hit_count_generic_relation'
@@ -41,6 +42,9 @@ class Article(models.Model, HitCountMixin):
 		return reverse("article", kwargs={"slug": self.slug})
 
 	def get_article_body_truncated(self):
+		"""
+		Get some part of the article body for using on articles list
+		"""
 		return md.markdown(self.body[:200], extensions=['markdown.extensions.fenced_code']).strip()
 
 	def get_article_img(self):
@@ -61,6 +65,11 @@ class ArticleComment(models.Model):
 
 class Tag(models.Model):
 	tag = models.CharField(max_length=128, unique=True)
+
+	def save(self, *args, **kwargs):
+		self.tag = self.tag.captalize()
+
+		super(Tag, self).save(*args, **kwargs)
 
 	def __str__(self):
 		return self.tag
