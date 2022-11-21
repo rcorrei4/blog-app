@@ -28,13 +28,6 @@ class ArticleDetail(HitCountDetailView):
 	model = Article
 	count_hit = True
 
-	def get_object(self, queryset=None):
-		object = super(ArticleDetail, self).get_object()
-		object.views += 1
-		object.save()
-
-		return object
-
 @method_decorator(login_required, name='dispatch')
 class ArticleCreate(CreateView):
 	model = Article

@@ -7,3 +7,4 @@ A blogging website inspired on Medium made with Django <br>
 - [ ] Change article views to be based on IP visits
 - [X] Logged-in index page
 - [ ] Recommendation System
+- [ ] Better article writing

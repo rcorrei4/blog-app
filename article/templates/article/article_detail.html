@@ -15,6 +15,7 @@
 	<aside class="aside-left">
 		<button id="like-btn" data-slug='{{ article.slug }}'>Like article {{ article.likes.count }}</button>
 		<button id="save-btn" data-slug='{{ article.slug }}'>Save article</button>
+		{% get_hit_count for article %}
 	</aside>
 	<main>
 		<div>
