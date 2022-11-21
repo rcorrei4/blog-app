@@ -37,6 +37,11 @@ Enter the following command:
 python3 manage.py runserver
 ~~~
 
+## Testing
+~~~shell
+python3 manage.py test
+~~~
+
 <br />
 
 For accessing the website enter the following url on your browser:
@@ -48,3 +53,4 @@ For accessing the website enter the following url on your browser:
 - [X] Logged-in index page
 - [ ] Recommendation System
 - [ ] Better article writing
+- [ ] Responsive design
